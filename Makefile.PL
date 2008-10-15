@@ -6,8 +6,8 @@ use ExtUtils::Depends;
 name 'B-Hooks-OP-Check-EntersubForCV';
 all_from 'lib/B/Hooks/OP/Check/EntersubForCV.pm';
 
-requires 'B::Hooks::OP::Check';
-build_requires 'B::Hooks::OP::Check';
+requires 'B::Hooks::OP::Check' => '0.10';
+build_requires 'B::Hooks::OP::Check' => '0.10';
 configure_requires 'ExtUtils::Depends';
 
 my $pkg = ExtUtils::Depends->new('B::Hooks::OP::Check::EntersubForCV', 'B::Hooks::OP::Check');
