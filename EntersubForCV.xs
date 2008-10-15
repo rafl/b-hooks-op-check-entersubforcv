@@ -41,7 +41,7 @@ entersub_cb (pTHX_ OP *op, void *user_data) {
 	cv = GvCV (cGVOPx_gv (kid));
 
 	if (ud->cv == cv) {
-		ud->cb (aTHX_ op, cv, ud->ud);
+		op = ud->cb (aTHX_ op, cv, ud->ud);
 	}
 
 	return op;
