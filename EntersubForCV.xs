@@ -70,7 +70,6 @@ perl_cb (pTHX_ OP *op, CV *cv, void *ud) {
 	XPUSHs (sv_2mortal (newRV ((SV *)cv)));
 	PUTBACK;
 
-	sv_dump ((SV *)ud);
 	call_sv ((SV *)ud, G_VOID|G_DISCARD);
 
 	SPAGAIN;
