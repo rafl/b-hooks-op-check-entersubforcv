@@ -6,6 +6,7 @@ use ExtUtils::Depends;
 name 'B-Hooks-OP-Check-EntersubForCV';
 all_from 'lib/B/Hooks/OP/Check/EntersubForCV.pm';
 
+requires 'parent';
 requires 'B::Hooks::OP::Check' => '0.11';
 build_requires 'B::Hooks::OP::Check' => '0.11';
 configure_requires 'ExtUtils::Depends';
