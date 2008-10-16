@@ -20,7 +20,10 @@ $pkg->add_pm('lib/B/Hooks/OP/Check/EntersubForCV.pm' => '$(INST_LIB)/B/Hooks/OP/
 mkdir 'build';
 $pkg->save_config('build/IFiles.pm');
 
-makemaker_args($pkg->get_makefile_vars);
+makemaker_args(
+    $pkg->get_makefile_vars,
+    dist => { PREOP => 'pod2text lib/B/Hooks/OP/Check/EntersubForCV.pm > README' },
+);
 
 extra_tests;
 
