@@ -77,6 +77,34 @@ B::Hooks::OP::Check::EntersubForCV - Invoke callbacks on construction of entersu
     /* unregister */
     hook_op_check_entersubforcv_remove (id);
 
+=head1 DESCRIPTION
+
+=head1 Perl API
+
+=head2 import
+
+=head2 unimport
+
+=head2 register
+
+=head2 unregister
+
+=head1 C API
+
+=head2 TYPES
+
+=head3 OP *(*hook_op_check_entersubforcv_cb) (pTHX_ OP *, CV *, void *)
+
+=head2 FUNCTIONS
+
+=head3 hook_op_check_id hook_op_check_entersubforcv (CV *, hook_op_check_entersubforcv_cb, void *user_data)
+
+=head3 void *hook_op_check_entersubforcv_remove (hook_op_check_id id)
+
+=head1 SEE ALSO
+
+L<B::Hooks::OP::Check>
+
 =head1 AUTHOR
 
 Florian Ragwitz E<lt>rafl@debian.orgE<gt>
