@@ -2,7 +2,6 @@
 #include "perl.h"
 #include "XSUB.h"
 
-#include "hook_op_check.h"
 #include "hook_op_check_entersubforcv.h"
 
 typedef struct userdata_St {
@@ -47,7 +46,7 @@ entersub_cb (pTHX_ OP *op, void *user_data) {
 	return op;
 }
 
-void
+hook_op_check_id
 hook_op_check_entersubforcv (CV *cv, hook_op_check_entersubforcv_cb cb, void *user_data) {
 	userdata_t *ud;
 
@@ -56,7 +55,7 @@ hook_op_check_entersubforcv (CV *cv, hook_op_check_entersubforcv_cb cb, void *us
 	ud->cb = cb;
 	ud->ud = user_data;
 
-	hook_op_check (OP_ENTERSUB, entersub_cb, ud);
+	return hook_op_check (OP_ENTERSUB, entersub_cb, ud);
 }
 
 STATIC OP *
@@ -85,9 +84,11 @@ MODULE = B::Hooks::OP::Check::EntersubForCV  PACKAGE = B::Hooks::OP::Check::Ente
 
 PROTOTYPES: DISABLE
 
-void
+UV
 hook (cv, cb)
 		CV *cv
 		SV *cb
 	CODE:
-		hook_op_check_entersubforcv (cv, perl_cb, newSVsv (cb));
+		RETVAL = (UV)hook_op_check_entersubforcv (cv, perl_cb, newSVsv (cb));
+	OUTPUT:
+		RETVAL
