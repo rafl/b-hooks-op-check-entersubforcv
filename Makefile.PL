@@ -21,4 +21,6 @@ $pkg->save_config('build/IFiles.pm');
 
 makemaker_args($pkg->get_makefile_vars);
 
+extra_tests;
+
 WriteAll;
