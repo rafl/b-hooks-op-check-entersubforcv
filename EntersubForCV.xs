@@ -58,6 +58,22 @@ hook_op_check_entersubforcv (CV *cv, hook_op_check_entersubforcv_cb cb, void *us
 	return hook_op_check (OP_ENTERSUB, entersub_cb, ud);
 }
 
+void *
+hook_op_check_entersubforcv_remove (hook_op_check_id id) {
+	void *ret;
+	userdata_t *ud = hook_op_check_remove (OP_ENTERSUB, id);
+
+	if (!ud) {
+		return NULL;
+	}
+
+	ret = ud->ud;
+
+	Safefree (ud);
+
+	return ret;
+}
+
 STATIC OP *
 perl_cb (pTHX_ OP *op, CV *cv, void *ud) {
 	dSP;
@@ -92,3 +108,9 @@ hook (cv, cb)
 		RETVAL = (UV)hook_op_check_entersubforcv (cv, perl_cb, newSVsv (cb));
 	OUTPUT:
 		RETVAL
+
+void
+unhook (id)
+		UV id
+	CODE:
+		SvREFCNT_dec (hook_op_check_entersubforcv_remove ((hook_op_check_id)id));
