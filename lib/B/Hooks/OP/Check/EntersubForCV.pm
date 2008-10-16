@@ -81,13 +81,28 @@ B::Hooks::OP::Check::EntersubForCV - Invoke callbacks on construction of entersu
 
 =head1 Perl API
 
-=head2 import
+=head2 import / register
 
-=head2 unimport
+    use B::Hooks::OP::Check::EntersubForCV
+        \&code => \&handler;
 
-=head2 register
+    # or
+    my $id = B::Hooks::OP::Check::EntersubForCV::register(\&code => \&handler);
 
-=head2 unregister
+Register C<handler> to be executed when an entersub opcode for the CV C<code>
+points to is compiled.
+
+When using C<register> an id that can be used for later removal of the handler
+using C<unregister> is returned.
+
+=head2 unimport / unregister
+
+    no B::Hooks::OP::Check::EntersubForCV \&code;
+
+    # or
+    B::Hooks::OP::Check::EntersubForCV::unregister($id);
+
+Stop calling the registered handler for C<code> for all entersubs after this.
 
 =head1 C API
 
@@ -95,11 +110,23 @@ B::Hooks::OP::Check::EntersubForCV - Invoke callbacks on construction of entersu
 
 =head3 OP *(*hook_op_check_entersubforcv_cb) (pTHX_ OP *, CV *, void *)
 
+The type the handlers need to implement.
+
 =head2 FUNCTIONS
 
-=head3 hook_op_check_id hook_op_check_entersubforcv (CV *, hook_op_check_entersubforcv_cb, void *user_data)
+=head3 hook_op_check_id hook_op_check_entersubforcv (CV *cv, hook_op_check_entersubforcv_cb cb, void *user_data)
+
+Register the callback C<cb> to be called when an entersub opcode for C<cv> is
+compiled. C<user_data> will be passed to the callback as the last argument.
+
+Returns an id that can be used to remove the handler using
+C<hook_op_check_entersubforcv_remove>.
 
 =head3 void *hook_op_check_entersubforcv_remove (hook_op_check_id id)
+
+Remove a previously registered handler referred to by C<id>.
+
+Returns the user data that was associated with the handler.
 
 =head1 SEE ALSO
 
