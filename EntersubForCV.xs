@@ -112,5 +112,11 @@ hook (cv, cb)
 void
 unhook (id)
 		UV id
+	PREINIT:
+		SV *ud;
 	CODE:
-		SvREFCNT_dec (hook_op_check_entersubforcv_remove ((hook_op_check_id)id));
+		ud = hook_op_check_entersubforcv_remove ((hook_op_check_id)id);
+
+		if (ud) {
+			SvREFCNT_dec (ud);
+		}
