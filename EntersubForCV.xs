@@ -16,6 +16,12 @@ entersub_cb (pTHX_ OP *op, void *user_data) {
 	CV *cv;
 	userdata_t *ud = (userdata_t *)user_data;
 
+	/* we currently ignore anything caused by &foo because \&foo also creates
+	 * an entersub op before ck_doref removes it again */
+	if (op->op_private & OPpENTERSUB_AMPER) {
+		return op;
+	}
+
 	kid = cUNOPx (op)->op_first;
 
 	/* pushmark for method call */
