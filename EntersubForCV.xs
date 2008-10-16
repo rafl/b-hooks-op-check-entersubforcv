@@ -101,7 +101,7 @@ MODULE = B::Hooks::OP::Check::EntersubForCV  PACKAGE = B::Hooks::OP::Check::Ente
 PROTOTYPES: DISABLE
 
 UV
-hook (cv, cb)
+register (cv, cb)
 		CV *cv
 		SV *cb
 	CODE:
@@ -110,7 +110,7 @@ hook (cv, cb)
 		RETVAL
 
 void
-unhook (id)
+unregister (id)
 		UV id
 	PREINIT:
 		SV *ud;
