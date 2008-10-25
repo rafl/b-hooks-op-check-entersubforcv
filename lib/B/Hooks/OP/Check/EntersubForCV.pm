@@ -7,7 +7,7 @@ use parent qw/DynaLoader/;
 use B::Hooks::OP::Check;
 use Scalar::Util qw/refaddr/;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 sub dl_load_flags { 0x01 }
 
