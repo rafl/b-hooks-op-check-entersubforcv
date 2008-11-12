@@ -1,3 +1,6 @@
+0.03  Wed, 12 Nov 2008 06:51:08 +0100
+  * Ignore non-entersub ops.
+
 0.02  Sat, 25 Oct 2008 12:26:34 +0200
   * Ignore null ops.
 
