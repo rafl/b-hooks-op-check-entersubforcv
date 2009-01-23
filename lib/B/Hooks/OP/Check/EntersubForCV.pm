@@ -6,6 +6,7 @@ package B::Hooks::OP::Check::EntersubForCV;
 use parent qw/DynaLoader/;
 use B::Hooks::OP::Check;
 use Scalar::Util qw/refaddr/;
+use B::Utils ();
 
 our $VERSION = '0.03';
 
