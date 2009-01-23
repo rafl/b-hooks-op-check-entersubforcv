@@ -1,6 +1,7 @@
 #include "EXTERN.h"
 #include "perl.h"
 #include "XSUB.h"
+#include "BUtils.h"
 
 #include "hook_op_check_entersubforcv.h"
 
@@ -94,13 +95,19 @@ hook_op_check_entersubforcv_remove (hook_op_check_id id) {
 
 STATIC OP *
 perl_cb (pTHX_ OP *op, CV *cv, void *ud) {
+	SV *opsv;
 	dSP;
 
 	ENTER;
 	SAVETMPS;
 
-	PUSHMARK (sp);
-	XPUSHs (sv_2mortal (newRV ((SV *)cv)));
+	opsv = sv_newmortal ();
+	sv_setiv (newSVrv (opsv, BUtils_cc_opclassname (aTHX_ op)), PTR2IV (op));
+
+	PUSHMARK (SP);
+	EXTEND (SP, 2);
+	PUSHs (sv_2mortal (newRV ((SV *)cv)));
+	PUSHs (opsv);
 	PUTBACK;
 
 	call_sv ((SV *)ud, G_VOID|G_DISCARD);
