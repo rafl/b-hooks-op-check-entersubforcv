@@ -1,13 +1,21 @@
 use strict;
 use warnings;
-use Test::More tests => 3;
+use Test::More tests => 9;
 
-sub foo {}
+sub foo { 42 }
 
 my $i;
 BEGIN { $i = 0; }
 
-sub callback { $i++ }
+sub callback {
+    my ($cv, $op) = @_;
+
+    is($cv->(), 42, 'we god the right coderef');
+    isa_ok($op, 'B::OP');
+    is($op->name, 'entersub', 'op looks sane');
+
+    $i++;
+}
 
 use B::Hooks::OP::Check::EntersubForCV
     \&foo => \&callback,
