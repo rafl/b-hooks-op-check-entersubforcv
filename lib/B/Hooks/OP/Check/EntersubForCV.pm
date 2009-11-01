@@ -62,7 +62,7 @@ B::Hooks::OP::Check::EntersubForCV - Invoke callbacks on construction of entersu
 
 =head2 From C/XS
 
-    #include "hooks_op_check_entersubforcv.h"
+    #include "hook_op_check_entersubforcv.h"
 
     STATIC OP *
     my_callback (pTHX_ OP *op, CV *cv, void *user_data) {
