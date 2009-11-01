@@ -139,7 +139,7 @@ Florian Ragwitz E<lt>rafl@debian.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (c) 2008 Florian Ragwitz
+Copyright (c) 2008, 2009 Florian Ragwitz
 
 This module is free software.
 
