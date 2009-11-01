@@ -1,3 +1,6 @@
+0.04  Mon, 02 Nov 2009 00:21:49 +0100
+  * Fix header filename in the SYNOPSIS (Yuval Kogman).
+
 0.03  Wed, 12 Nov 2008 06:51:08 +0100
   * Ignore non-entersub ops.
 
