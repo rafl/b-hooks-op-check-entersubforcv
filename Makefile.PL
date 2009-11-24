@@ -12,6 +12,7 @@ requires 'B::Utils';
 requires 'B::Hooks::OP::Check' => '0.11';
 build_requires 'B::Utils';
 build_requires 'B::Hooks::OP::Check' => '0.11';
+configure_requires 'B::Utils';
 configure_requires 'ExtUtils::Depends';
 
 my $pkg = ExtUtils::Depends->new('B::Hooks::OP::Check::EntersubForCV', 'B::Hooks::OP::Check', 'B::Utils');
