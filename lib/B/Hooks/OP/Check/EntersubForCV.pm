@@ -8,7 +8,7 @@ use B::Hooks::OP::Check;
 use Scalar::Util qw/refaddr/;
 use B::Utils ();
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 sub dl_load_flags { 0x01 }
 

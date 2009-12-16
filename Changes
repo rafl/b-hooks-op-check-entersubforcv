@@ -1,3 +1,6 @@
+0.05  Wed, 16 Dec 2009 02:26:09 +0100
+  * Make sure B::Utils is present at configure time (osfameron).
+
 0.04  Mon, 02 Nov 2009 00:21:49 +0100
   * Fix header filename in the SYNOPSIS (Yuval Kogman).
 
