@@ -14,6 +14,7 @@ build_requires 'B::Utils';
 build_requires 'B::Hooks::OP::Check' => '0.11';
 configure_requires 'B::Utils';
 configure_requires 'ExtUtils::Depends';
+configure_requires 'B::Hooks::OP::Check' => '0.11';
 
 my $pkg = ExtUtils::Depends->new('B::Hooks::OP::Check::EntersubForCV', 'B::Hooks::OP::Check', 'B::Utils');
 $pkg->install('hook_op_check_entersubforcv.h');
